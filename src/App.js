@@ -15,6 +15,13 @@ import PublicRoute from './components/PublicRoute';
 import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 import 'animate.css/animate.css';
+import { css } from '@emotion/react';
+import MoonLoader from 'react-spinners/MoonLoader';
+
+const override = css`
+  display: block;
+  margin: auto;
+`;
 
 const HomeView = lazy(() =>
   import('./view/HomeView/HomeView' /* webpackChunkName: "HomePage" */),
@@ -47,7 +54,11 @@ export default function App() {
 
       <Navigation />
 
-      <Suspense fallback={<h2>loading...</h2>}>
+      <Suspense
+        fallback={
+          <MoonLoader color="#0575e6" size="60" css={override}></MoonLoader>
+        }
+      >
         <Switch>
           <PublicRoute exact path="/">
             <HomeView />
