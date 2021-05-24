@@ -1,0 +1,44 @@
+@import '../../styles/base.scss';
+
+.UserNav__wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.UserNav__user-data-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.UserNav__logo {
+  font-size: 20px;
+  color: $secondary-text-color;
+}
+
+.UserNav__user-name {
+  margin-right: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: $secondary-text-color;
+}
+
+.UserNav__btn {
+  @extend %button;
+  margin-top: 10px;
+  width: 80px;
+  height: 30px;
+  font-size: 12px;
+  /* background-color: $third-text-color; */
+  color: $secondary-text-color;
+  background: #fc4a1a; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #f7b733,
+    #fc4a1a
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #f7b733,
+    #fc4a1a
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}

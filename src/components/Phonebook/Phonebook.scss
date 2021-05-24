@@ -1,0 +1,43 @@
+@import '../../styles/base.scss';
+
+.Phonebook__form {
+  @extend %form-box;
+}
+.Phonebook-form__block-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.Phonebook__label {
+  @extend %input-label;
+}
+
+.Phonebook-form__input-wrapper {
+  position: relative;
+}
+
+.Phonebook__input {
+  @extend %input-form;
+
+  &:focus {
+    @extend %input-form-focus;
+  }
+}
+
+.Phonebook-form__input-icon {
+  @extend %input-icon;
+
+  .Phonebook-form__input-wrapper:focus-within & {
+    @extend %input-icon-focus;
+  }
+}
+
+.Phonebook-form__btn {
+  @extend %button;
+}
+
+.Phonebook__btn {
+  @extend %button;
+  margin-bottom: 10px;
+}

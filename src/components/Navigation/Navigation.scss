@@ -1,0 +1,58 @@
+@import '../../styles/base.scss';
+
+header {
+  background-color: $secondary-color;
+
+  box-shadow: 0px -5px 10px -5px white inset;
+}
+.container {
+  @include for-size(mobile); /* width: 320px; */
+  padding: 10px;
+}
+.header-nav {
+  height: 60px;
+  margin-left: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-nav__logo {
+  position: absolute;
+  left: 10px;
+}
+
+.header-nav__logo-icon {
+  font-size: 24px;
+  color: $secondary-text-color;
+}
+
+.header-nav__wrapper {
+  display: flex;
+}
+
+.header-nav__item {
+  display: block;
+  margin-right: 10px;
+  position: relative;
+  text-transform: uppercase;
+  color: white;
+  font-size: 14px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &::after {
+    @extend %nav-link-underscore-hover;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+.header-nav__item--active {
+  &::after {
+    @extend %nav-link-underscore-active;
+  }
+}

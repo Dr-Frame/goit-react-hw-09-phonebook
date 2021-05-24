@@ -1,0 +1,28 @@
+@import '../../styles/base.scss';
+
+.Contacts__block-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.Contacts__label {
+  @extend %input-label;
+}
+.Contacts__input-wrapper {
+  position: relative;
+}
+.Contacts__input {
+  @extend %input-form;
+
+  &:focus {
+    @extend %input-form-focus;
+  }
+}
+
+.Contacts__input-icon {
+  @extend %input-icon;
+
+  .Contacts__input-wrapper:focus-within & {
+    @extend %input-icon-focus;
+  }
+}

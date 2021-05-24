@@ -1,0 +1,17 @@
+@import '../../styles/base.scss';
+
+.HomeView {
+  min-height: 300px;
+  padding: 10px;
+
+  background-image: url(https://image.freepik.com/free-vector/meet-our-team-concept-landing-page_52683-10031.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  //https://i.ibb.co/6w8MSWJ/2420689.jpg
+}
+
+.HomeView-title {
+  @extend %titles;
+}

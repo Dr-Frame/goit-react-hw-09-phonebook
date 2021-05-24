@@ -1,0 +1,48 @@
+@import '../../styles/base.scss';
+
+.register {
+  padding: 10px;
+}
+
+.register__title {
+  @extend %form-title;
+}
+
+.register-form {
+  @extend %form-box;
+}
+
+.register-form__label {
+  display: block;
+  @extend %input-label;
+}
+
+.register-form__block-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.register-form__input-wrapper {
+  position: relative;
+}
+
+.register-form__input {
+  @extend %input-form;
+
+  &:focus {
+    @extend %input-form-focus;
+  }
+}
+
+.register-form__input-icon {
+  @extend %input-icon;
+
+  .register-form__input-wrapper:focus-within & {
+    @extend %input-icon-focus;
+  }
+}
+
+.register-form__btn {
+  @extend %button;
+}
