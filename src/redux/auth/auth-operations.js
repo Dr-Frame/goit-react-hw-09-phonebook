@@ -112,14 +112,9 @@ const getCurrentUser = () => async (dispatch, getState) => {
   }
 };
 
-const turnOffLogoutSuccessNotify = () => dispatch => {
-  dispatch(authActions.turnOffLogoutSuccessNotify());
-};
-
 export default {
   register,
   logOut,
   logIn,
   getCurrentUser,
-  turnOffLogoutSuccessNotify,
 };

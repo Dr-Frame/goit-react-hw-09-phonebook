@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { Route, Switch } from 'react-router';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Navigation from './components/Navigation';
-import ContactsView from './view/ContactsView/ContactsView';
-import HomeView from './view/HomeView/HomeView';
-import RegistarionView from './view/RegistarationView/RegistationView';
-import LoginView from './view/LoginView/LoginView';
+/* import ContactsView from './view/ContactsView/ContactsView'; */
+/* import HomeView from './view/HomeView/HomeView'; */
+/* import RegistarionView from './view/RegistarationView/RegistationView';
+import LoginView from './view/LoginView/LoginView'; */
 import Footer from './components/Footer';
 
 import authOperations from './redux/auth/auth-operations';
@@ -16,46 +16,55 @@ import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 import 'animate.css/animate.css';
 
-class App extends Component {
-  componentDidMount() {
-    this.props.getCurrentUser();
-  }
+const HomeView = lazy(() =>
+  import('./view/HomeView/HomeView' /* webpackChunkName: "HomePage" */),
+);
+const ContactsView = lazy(() =>
+  import(
+    './view/ContactsView/ContactsView' /* webpackChunkName: "ContactsView" */
+  ),
+);
+const RegistarionView = lazy(() =>
+  import(
+    './view/RegistarationView/RegistationView' /* webpackChunkName: "RegistarionView" */
+  ),
+);
 
-  render() {
-    return (
-      <>
-        <ReactNotification isMobile="true" />
+const LoginView = lazy(() =>
+  import('./view/LoginView/LoginView' /* webpackChunkName: "LoginView" */),
+);
 
-        <Navigation />
+export default function App() {
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(authOperations.getCurrentUser());
+  }, [dispatch]);
+
+  return (
+    <>
+      <ReactNotification isMobile="true" />
+
+      <Navigation />
+
+      <Suspense fallback={<h2>loading...</h2>}>
         <Switch>
-          <Route exact path="/" component={HomeView} />
-          <PrivateRoute
-            path="/contacts"
-            component={ContactsView}
-            redirectTo="/login"
-          />
-          <PublicRoute
-            restricted
-            path="/registration"
-            component={RegistarionView}
-            redirectTo="/contacts"
-          />
-          <PublicRoute
-            path="/login"
-            restricted
-            component={LoginView}
-            redirectTo="/contacts"
-          />
+          <PublicRoute exact path="/">
+            <HomeView />
+          </PublicRoute>
+          <PrivateRoute path="/contacts" redirectTo="/login">
+            <ContactsView />
+          </PrivateRoute>
+          <PublicRoute restricted path="/registration" redirectTo="/contacts">
+            <RegistarionView />
+          </PublicRoute>
+          <PublicRoute path="/login" restricted redirectTo="/contacts">
+            <LoginView />
+          </PublicRoute>
         </Switch>
-        <Footer />
-      </>
-    );
-  }
+      </Suspense>
+
+      <Footer />
+    </>
+  );
 }
-
-const mapDispatchToProps = {
-  getCurrentUser: authOperations.getCurrentUser,
-};
-
-export default connect(null, mapDispatchToProps)(App);

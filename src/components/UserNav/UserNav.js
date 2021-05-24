@@ -1,12 +1,14 @@
 import React from 'react';
 import './UserNav.scss';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import authSelectors from '../../redux/auth/auth-selectors';
 import authOperations from '../../redux/auth/auth-operations';
 import { FaUserCircle } from 'react-icons/fa';
 
-const UserNav = ({ name, onLogout }) => {
+export default function UserNav() {
+  const dispatch = useDispatch();
+  const name = useSelector(authSelectors.getUserName);
+
   return (
     <div className="UserNav__wrapper">
       <div className="UserNav__user-data-wrapper">
@@ -14,24 +16,13 @@ const UserNav = ({ name, onLogout }) => {
         <FaUserCircle className="UserNav__logo" />
       </div>
 
-      <button type="button" onClick={onLogout} className="UserNav__btn">
+      <button
+        type="button"
+        onClick={() => dispatch(authOperations.logOut())}
+        className="UserNav__btn"
+      >
         Logout
       </button>
     </div>
   );
-};
-
-UserNav.propTypes = {
-  name: PropTypes.string.isRequired,
-  onLogout: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = state => ({
-  name: authSelectors.getUserName(state),
-});
-
-const mapDispatchToProps = {
-  onLogout: authOperations.logOut,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserNav);
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import AuthNav from '../AuthNav';
 import UserNav from '../UserNav';
@@ -8,7 +8,9 @@ import './Navigation.scss';
 import authSelectors from '../../redux/auth/auth-selectors';
 import { MdLocalLibrary } from 'react-icons/md';
 
-const Navigation = ({ isAuthenticated }) => {
+export default function Navigation() {
+  const isAuthenticated = useSelector(authSelectors.getIsAuthenticated);
+
   return (
     <header>
       <div className="container">
@@ -42,10 +44,4 @@ const Navigation = ({ isAuthenticated }) => {
       </div>
     </header>
   );
-};
-
-const mapStateToProps = state => ({
-  isAuthenticated: authSelectors.getIsAuthenticated(state),
-});
-
-export default connect(mapStateToProps)(Navigation);
+}

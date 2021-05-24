@@ -16,18 +16,20 @@ const addContact = (name, number) => dispatch => {
 
   axios
     .post('/contacts', contact)
-    .then(({ data }) => dispatch(actions.addContactSuccess(data)))
-    .then(notifications.contactAddedSuccessNotify())
+    .then(({ data }) => {
+      dispatch(actions.addContactSuccess(data));
+      notifications.contactAddedSuccessNotify();
+    })
     .catch(error => dispatch(actions.addContactError(error)));
 };
 
 const deleteContact = id => async dispatch => {
   dispatch(actions.deleteContactRequest());
   try {
-    await axios
-      .delete(`contacts/${id}`)
-      .then(() => dispatch(actions.deleteContactSuccess(id)))
-      .then(notifications.contactDeletedSuccessNotify());
+    await axios.delete(`contacts/${id}`).then(() => {
+      dispatch(actions.deleteContactSuccess(id));
+      notifications.contactDeletedSuccessNotify();
+    });
   } catch (error) {
     dispatch(actions.deleteContactError(error));
   }

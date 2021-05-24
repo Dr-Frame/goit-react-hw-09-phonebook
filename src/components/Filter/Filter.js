@@ -1,13 +1,19 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import contactActions from '../../redux/contacts/contacts-actions';
 import contactsSelectors from '../../redux/contacts/contacts-selectors';
 import './Filter.scss';
 import { RiFilter2Fill } from 'react-icons/ri';
-/* 
-import styles from './Filter.module.css'; */
 
-const Filter = ({ filter, changeFilter }) => {
+export default function Filter() {
+  const dispatch = useDispatch();
+
+  const filter = useSelector(contactsSelectors.getFilterValue);
+
+  const changeFilter = e => {
+    dispatch(contactActions.changeFilter(e.currentTarget.value));
+  };
+
   return (
     <div className="Contacts__block-wrapper">
       <label htmlFor="filter" className="Contacts__label">
@@ -26,9 +32,9 @@ const Filter = ({ filter, changeFilter }) => {
       </div>
     </div>
   );
-};
+}
 
-const mapStateToProps = state => ({
+/* const mapStateToProps = state => ({
   filter: contactsSelectors.getFilterValue(state),
 });
 
@@ -37,4 +43,4 @@ const mapDispatchToProps = dispatch => ({
     dispatch(contactActions.changeFilter(e.currentTarget.value)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+export default connect(mapStateToProps, mapDispatchToProps)(Filter); */
