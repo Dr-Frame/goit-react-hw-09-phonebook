@@ -1,5 +1,6 @@
 @import './variables';
 @import './colors';
+@import './mixins';
 
 %button {
   display: block;
@@ -38,6 +39,11 @@
   background: white;
   width: 0;
   transition: $transition;
+
+  @include for-size(tablet) {
+    top: 27px;
+    height: 7px;
+  }
 }
 
 %nav-link-underscore-active {
@@ -47,12 +53,16 @@
   position: absolute;
   background: white;
   width: 100%;
+
+  @include for-size(tablet) {
+    height: 7px;
+  }
 }
 %form-title {
   display: flex;
   justify-content: center;
-
-  margin-bottom: 10px;
+  margin-top: 15px;
+  margin-bottom: 20px;
 
   text-transform: uppercase;
   font-size: 16px;

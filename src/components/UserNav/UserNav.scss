@@ -3,16 +3,30 @@
 .UserNav__wrapper {
   display: flex;
   flex-direction: column;
+
+  @include for-size(tablet) {
+    flex-direction: row;
+    align-items: center;
+  }
 }
 
 .UserNav__user-data-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-around;
+
+  @include for-size(tablet) {
+    margin-right: 20px;
+  }
 }
+
 .UserNav__logo {
   font-size: 20px;
   color: $secondary-text-color;
+
+  @include for-size(tablet) {
+    font-size: 24px;
+  }
 }
 
 .UserNav__user-name {
@@ -20,6 +34,10 @@
   font-size: 14px;
   font-weight: 700;
   color: $secondary-text-color;
+
+  @include for-size(tablet) {
+    font-size: 16px;
+  }
 }
 
 .UserNav__btn {
@@ -28,7 +46,6 @@
   width: 80px;
   height: 30px;
   font-size: 12px;
-  /* background-color: $third-text-color; */
   color: $secondary-text-color;
   background: #fc4a1a; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -41,4 +58,11 @@
     #f7b733,
     #fc4a1a
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  @include for-size(tablet) {
+    margin-top: 0;
+    width: 90px;
+    height: 40px;
+    font-size: 16px;
+  }
 }

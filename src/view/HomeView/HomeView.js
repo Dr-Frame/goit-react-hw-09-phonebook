@@ -6,7 +6,9 @@ export default function HomeView() {
   return (
     <>
       <section className="HomeView">
-        <h1 className="HomeView-title">Welcome to the Phonebook App</h1>
+        <div className="container HomeView__container ">
+          <h1 className="HomeView-title">Welcome to the Phonebook App</h1>
+        </div>
       </section>
       <Advantages />
     </>

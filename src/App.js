@@ -11,17 +11,10 @@ import Footer from './components/Footer';
 import authOperations from './redux/auth/auth-operations';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
-
+import Spinner from './components/Spinner';
 import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 import 'animate.css/animate.css';
-import { css } from '@emotion/react';
-import MoonLoader from 'react-spinners/MoonLoader';
-
-const override = css`
-  display: block;
-  margin: auto;
-`;
 
 const HomeView = lazy(() =>
   import('./view/HomeView/HomeView' /* webpackChunkName: "HomePage" */),
@@ -54,11 +47,7 @@ export default function App() {
 
       <Navigation />
 
-      <Suspense
-        fallback={
-          <MoonLoader color="#0575e6" size="60" css={override}></MoonLoader>
-        }
-      >
+      <Suspense fallback={<Spinner />}>
         <Switch>
           <PublicRoute exact path="/">
             <HomeView />
