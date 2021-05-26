@@ -75,6 +75,7 @@ export default function Phonebook() {
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
             required
+            placeholder="Boris Britva"
             onChange={handleInputChange}
             value={name}
             id={nameInputId}
@@ -95,6 +96,7 @@ export default function Phonebook() {
             pattern="(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
             title="Номер телефона должен состоять из 11-12 цифр и может содержать цифры, пробелы, тире, пузатые скобки и может начинаться с +"
             required
+            placeholder="+380(68)-11-11-222"
             onChange={handleInputChange}
             value={number}
             id={phoneInputId}

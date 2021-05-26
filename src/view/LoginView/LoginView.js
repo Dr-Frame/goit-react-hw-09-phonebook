@@ -34,47 +34,52 @@ export default function LoginView() {
 
   return (
     <section className="login">
-      <h1 className="login__title">Login form</h1>
+      <div className="container">
+        <h1 className="login__title">Login form</h1>
 
-      <form className="login-form" autoComplete="off" onSubmit={handleSubmit}>
-        <div className="login-form__wrapper">
-          <label className="login-form__label" htmlFor={formInputID.emailInput}>
-            E-mail
-          </label>
-          <div className="login-form__input-wrapper">
-            <input
-              id={formInputID.emailInput}
-              className="login-form__input"
-              type="text"
-              name="email"
-              value={email}
-              onChange={handleEmailChange}
-            />
-            <FiMail className="login-form__input-icon" />
+        <form className="login-form" autoComplete="off" onSubmit={handleSubmit}>
+          <div className="login-form__wrapper">
+            <label
+              className="login-form__label"
+              htmlFor={formInputID.emailInput}
+            >
+              E-mail
+            </label>
+            <div className="login-form__input-wrapper">
+              <input
+                id={formInputID.emailInput}
+                className="login-form__input"
+                type="text"
+                name="email"
+                value={email}
+                onChange={handleEmailChange}
+              />
+              <FiMail className="login-form__input-icon" />
+            </div>
           </div>
-        </div>
 
-        <div className="login-form__wrapper">
-          <label htmlFor="password " className="login-form__label">
-            Password
-          </label>
-          <div className="login-form__input-wrapper">
-            <input
-              id="password"
-              className="login-form__input"
-              type="password"
-              name="password"
-              value={password}
-              onChange={handlePasswordChange}
-            />
-            <IoMdKey className="login-form__input-icon" />
+          <div className="login-form__wrapper">
+            <label htmlFor="password " className="login-form__label">
+              Password
+            </label>
+            <div className="login-form__input-wrapper">
+              <input
+                id="password"
+                className="login-form__input"
+                type="password"
+                name="password"
+                value={password}
+                onChange={handlePasswordChange}
+              />
+              <IoMdKey className="login-form__input-icon" />
+            </div>
           </div>
-        </div>
 
-        <button className="login-form__btn" type="submit">
-          Login
-        </button>
-      </form>
+          <button className="login-form__btn" type="submit">
+            Login
+          </button>
+        </form>
+      </div>
     </section>
   );
 }
