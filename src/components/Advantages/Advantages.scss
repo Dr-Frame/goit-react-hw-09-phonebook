@@ -4,6 +4,19 @@
   margin-bottom: 20px;
   @extend %titles;
   font-size: 24px;
+
+  @include for-size(tablet) {
+    font-size: 26px;
+    margin-bottom: 30px;
+  }
+}
+
+.Advantages__list {
+  @include for-size(tablet) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
 .Advantages__item {
@@ -12,6 +25,11 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 15px;
+
+  @include for-size(tablet) {
+    width: 300px;
+    margin-bottom: 25px;
+  }
 }
 
 .Advantages__item__icon-wrapper {
@@ -24,20 +42,40 @@
   border-radius: 50%;
 
   margin-bottom: 5px;
+
+  @include for-size(tablet) {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 10px;
+    border: 3px solid $secondary-color;
+  }
 }
 
 .Advantages__item-icon {
   font-size: 30px;
   color: $main-text-color;
+
+  @include for-size(tablet) {
+    font-size: 40px;
+  }
 }
 
 .Advantages__item-title {
   color: $secondary-color;
   font-size: 16px;
   margin-bottom: 5px;
+
+  @include for-size(tablet) {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
 }
 
 .Advantages__item__text {
   font-size: 14px;
   text-align: center;
+
+  @include for-size(tablet) {
+    font-size: 16px;
+  }
 }

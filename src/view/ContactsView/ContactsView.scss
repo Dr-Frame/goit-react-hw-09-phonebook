@@ -1,21 +1,32 @@
 @import '../../styles/base.scss';
 .main {
-  padding: 10px;
 }
 
 .Phonebook {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+
+  @include for-size(tablet) {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid $border-input-color;
+  }
 }
 
 .Phonebook__title {
   @extend %titles;
   margin-bottom: 10px;
-}
-.Contacts {
+
+  @include for-size(tablet) {
+    margin-bottom: 25px;
+  }
 }
 
 .Contacts__title {
   @extend %titles;
   font-size: 24px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+
+  @include for-size(tablet) {
+    font-size: 26px;
+  }
 }

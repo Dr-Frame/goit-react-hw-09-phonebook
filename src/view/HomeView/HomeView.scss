@@ -12,6 +12,10 @@
 .HomeView__container {
   margin: 0 auto;
   min-height: 300px;
+
+  @include for-size(tablet) {
+    min-height: 550px;
+  }
 }
 
 .HomeView-title {

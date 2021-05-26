@@ -28,6 +28,12 @@
     text-shadow: 0px 0px 10px $text-shadow-color;
     transform: scale(1.1);
   }
+
+  @include for-size(tablet) {
+    width: 200px;
+    height: 55px;
+    font-size: 18px;
+  }
 }
 
 %nav-link-underscore-hover {
@@ -67,6 +73,11 @@
   text-transform: uppercase;
   font-size: 16px;
   color: $secondary-color;
+
+  @include for-size(tablet) {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
 }
 
 %form-box {
@@ -74,6 +85,11 @@
   border: 1px solid $border-input-color;
   border-radius: 5px;
   padding: 10px;
+
+  @include for-size(tablet) {
+    margin: 0 auto;
+    width: 500px;
+  }
 }
 
 %input-label {
@@ -81,6 +97,10 @@
   font-size: 14px;
   font-weight: 700;
   color: $main-text-color;
+
+  @include for-size(tablet) {
+    font-size: 16px;
+  }
 }
 
 %input-form {
@@ -92,6 +112,12 @@
   border: 1px solid $border-input-color;
   transition: $transition;
   font-size: 14px;
+
+  @include for-size(tablet) {
+    height: 40px;
+    padding-left: 35px;
+    font-size: 16px;
+  }
 }
 
 %input-form-focus {
@@ -107,16 +133,31 @@
   transform: translateY(-50%);
   transition: $transition;
   font-size: 16px;
+
+  @include for-size(tablet) {
+    font-size: 20px;
+    left: 10px;
+  }
 }
 
 %input-icon-focus {
   color: $secondary-color;
   font-size: 14px;
   left: 7px;
+
+  @include for-size(tablet) {
+    font-size: 18px;
+    left: 9px;
+  }
 }
 
 %titles {
   text-align: center;
   font-size: 26px;
   color: $secondary-color;
+
+  @include for-size(tablet) {
+    font-size: 30px;
+    margin-top: 20px;
+  }
 }

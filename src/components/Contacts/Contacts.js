@@ -7,6 +7,7 @@ import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { FaUser } from 'react-icons/fa';
 import { ImPhone } from 'react-icons/im';
 import { VscWarning } from 'react-icons/vsc';
+import Spinner from '../Spinner';
 
 export default function Contacts() {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ export default function Contacts() {
 
   return (
     <div className="Contacts-wrapper">
-      {isLoadingContacts && <h2>...loading</h2>}
+      {isLoadingContacts && <Spinner />}
       {contacts.length === 0 && (
         <div className="Contacts__empty">
           <VscWarning className="Contacts__empty__warning-icon" />

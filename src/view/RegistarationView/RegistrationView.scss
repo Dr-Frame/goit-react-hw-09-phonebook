@@ -1,8 +1,12 @@
 @import '../../styles/base.scss';
 
-.register {
-  padding: 10px;
+/* .register {
 }
+
+.register__container {
+  padding-left: 20px;
+  padding-right: 20px;
+} */
 
 .register__title {
   @extend %form-title;
@@ -16,11 +20,18 @@
   display: block;
   @extend %input-label;
 }
+.register-form__label--hover {
+  color: $secondary-color;
+}
 
 .register-form__block-wrapper {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
+
+  @include for-size(tablet) {
+    margin-bottom: 20px;
+  }
 }
 
 .register-form__input-wrapper {
