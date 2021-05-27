@@ -10,6 +10,10 @@
     margin-left: 100px;
     margin-bottom: 25px;
   }
+  @include for-size(desktop) {
+    margin-right: 275px;
+    margin-left: 275px;
+  }
 }
 .Contacts__label {
   @extend %input-label;
