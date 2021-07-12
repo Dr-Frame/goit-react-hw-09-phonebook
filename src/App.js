@@ -1,5 +1,5 @@
 import React, { useEffect, lazy, Suspense } from 'react';
-import { Route, Switch } from 'react-router';
+import { Redirect, Route, Switch } from 'react-router';
 import { useDispatch } from 'react-redux';
 import Navigation from './components/Navigation';
 /* import ContactsView from './view/ContactsView/ContactsView'; */
@@ -55,12 +55,18 @@ export default function App() {
           <PrivateRoute path="/contacts" redirectTo="/login">
             <ContactsView />
           </PrivateRoute>
-          <PublicRoute restricted path="/registration" redirectTo="/contacts">
+          <PublicRoute
+            exact
+            restricted
+            path="/registration"
+            redirectTo="/contacts"
+          >
             <RegistarionView />
           </PublicRoute>
-          <PublicRoute path="/login" restricted redirectTo="/contacts">
+          <PublicRoute exact path="/login" restricted redirectTo="/contacts">
             <LoginView />
           </PublicRoute>
+          <Redirect to="/" />
         </Switch>
       </Suspense>
 

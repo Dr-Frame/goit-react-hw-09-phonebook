@@ -24,7 +24,7 @@ const Footer = () => {
                 className="Footer__contacts-link"
                 href="https://github.com/Dr-Frame"
               >
-                <p className="Footer__contacts-link-text">Github</p>
+                Github
               </a>
             </li>
             <li className="Footer__contacts-item">
@@ -33,13 +33,13 @@ const Footer = () => {
                 className="Footer__contacts-link"
                 href="https://www.linkedin.com/in/vladislav-remenyuk-2446491b6/"
               >
-                <p className="Footer__contacts-link-text">LinkedIn</p>
+                LinkedIn
               </a>
             </li>
             <li className="Footer__contacts-item">
               <FaTelegram className="Footer__contacts-icon" />
               <a className="Footer__contacts-link" href="https://t.me/Dr_Frame">
-                <p className="Footer__contacts-link-text">Telegram</p>
+                Telegram
               </a>
             </li>
           </ul>

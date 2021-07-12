@@ -45,3 +45,27 @@
 .login-form__btn {
   @extend %button;
 }
+
+.validation {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+
+  color: red;
+}
+
+.validation__icon {
+  margin-right: 5px;
+  @include for-size(desktop) {
+    font-size: 18px;
+  }
+}
+.validation__text {
+  font-size: 12px;
+  @include for-size(tablet) {
+    font-size: 13px;
+  }
+  @include for-size(desktop) {
+    font-size: 14px;
+  }
+}

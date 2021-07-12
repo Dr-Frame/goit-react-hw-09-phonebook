@@ -74,7 +74,7 @@ const registerSuccessNotify = () => {
 const registerErrorNotify = () => {
   store.addNotification({
     title: 'Error',
-    message: 'Please, enter a valid data',
+    message: 'This email had already used',
     type: 'danger',
     insert: 'top',
     container: 'top-right',

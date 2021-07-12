@@ -31,10 +31,15 @@ const register = credentials => async dispatch => {
     dispatch(authActions.registerSuccess(response.data));
     notifications.registerSuccessNotify();
   } catch (error) {
+    if (error.response.data.code === 11000) {
+      notifications.registerErrorNotify();
+    }
+
     dispatch(authActions.registerError(error.message));
-    notifications.registerErrorNotify();
   }
 };
+
+// "name": "MongoError" ошибка когда юзер уже есть
 
 /*
  * POST @ /users/login

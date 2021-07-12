@@ -7,39 +7,12 @@ import { FaUserEdit } from 'react-icons/fa';
 import classnames from 'classnames';
 import shortid from 'shortid';
 import './RegistrationView.scss';
+import { VscWarning } from 'react-icons/vsc';
+
+import { useForm } from 'react-hook-form';
 
 export default function RegistrationView() {
   const dispatch = useDispatch();
-
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [isNameInputInFocus, setIsNameInputInFocus] = useState(false);
-  const [isEmailInputInFocus, setIsEmailInputInFocus] = useState(false);
-  const [isPasswordInputInFocus, setIsPasswordInputInFocus] = useState(false);
-
-  const handleFormInputChange = {
-    inputNameOnFocus: function () {
-      setIsNameInputInFocus(true);
-    },
-    inputNameOnBlur: function () {
-      setIsNameInputInFocus(false);
-    },
-
-    inputEmailOnFocus: function () {
-      setIsEmailInputInFocus(true);
-    },
-    inputEmailOnBlur: function () {
-      setIsEmailInputInFocus(false);
-    },
-
-    inputPasswordOnFocus: function () {
-      setIsPasswordInputInFocus(true);
-    },
-    inputPasswordOnBlur: function () {
-      setIsPasswordInputInFocus(false);
-    },
-  };
 
   const formInputID = {
     nameInput: shortid.generate(),
@@ -47,31 +20,15 @@ export default function RegistrationView() {
     passwordInput: shortid.generate(),
   };
 
-  const handleInputChange = e => {
-    const { name, value } = e.target;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
-      case 'email':
-        setEmail(value);
-        break;
-      case 'password':
-        setPassword(value);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    dispatch(authOperations.register({ name, email, password }));
-
-    setName('');
-    setEmail('');
-    setPassword('');
+  const onSubmit = data => {
+    console.log(data);
+    dispatch(authOperations.register(data));
   };
 
   return (
@@ -80,14 +37,12 @@ export default function RegistrationView() {
         <h1 className="register__title">Registration form</h1>
         <form
           className="register-form"
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           autoComplete="off"
         >
           <div className="register-form__block-wrapper">
             <label
-              className={classnames('register-form__label', {
-                'register-form__label--hover': isNameInputInFocus,
-              })}
+              className="register-form__label"
               htmlFor={formInputID.nameInput}
             >
               Name
@@ -97,21 +52,27 @@ export default function RegistrationView() {
                 className="register-form__input"
                 type="text"
                 name="name"
+                placeholder="Boris"
                 id={formInputID.nameInput}
-                value={name}
-                onFocus={handleFormInputChange.inputNameOnFocus}
-                onBlur={handleFormInputChange.inputNameOnBlur}
-                onChange={handleInputChange}
+                {...register('name', {
+                  required: true,
+                  validate: value => value.length > 3,
+                })}
               />
+
               <FaUserEdit className="register-form__input-icon" />
             </div>
+            {errors.name && (
+              <div className="validation">
+                <VscWarning className="validation__icon" />
+                <p className="validation__text">Your name is too short</p>
+              </div>
+            )}
           </div>
 
           <div className="register-form__block-wrapper">
             <label
-              className={classnames('register-form__label', {
-                'register-form__label--hover': isEmailInputInFocus,
-              })}
+              className="register-form__label"
               htmlFor={formInputID.emailInput}
             >
               E-mail
@@ -119,40 +80,71 @@ export default function RegistrationView() {
             <div className="register-form__input-wrapper">
               <input
                 className="register-form__input"
-                type="text"
+                type="email"
                 name="email"
                 id={formInputID.emailInput}
-                value={email}
-                onFocus={handleFormInputChange.inputEmailOnFocus}
-                onBlur={handleFormInputChange.inputEmailOnBlur}
-                onChange={handleInputChange}
+                placeholder="yourmail@mail.com"
+                {...register('email', {
+                  required: true,
+                  pattern:
+                    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                  validate: value => value.length > 0,
+                })}
               />
               <FiMail className="register-form__input-icon" />
             </div>
+
+            {errors.email && (
+              <div className="validation">
+                <VscWarning className="validation__icon" />
+                <p className="validation__text">
+                  This field shouldn't be empty
+                </p>
+              </div>
+            )}
           </div>
 
           <div className="register-form__block-wrapper">
             <label
-              className={classnames('register-form__label', {
-                'register-form__label--hover': isPasswordInputInFocus,
-              })}
+              className="register-form__label"
               htmlFor={formInputID.passwordInput}
             >
               Password
             </label>
+
             <div className="register-form__input-wrapper">
               <input
                 className="register-form__input"
                 type="password"
                 name="password"
                 id={formInputID.passwordInput}
-                value={password}
-                onFocus={handleFormInputChange.inputPasswordOnFocus}
-                onBlur={handleFormInputChange.inputPasswordOnBlur}
-                onChange={handleInputChange}
+                {...register('password', {
+                  validate: {
+                    badWord: value => value.trim().toLowerCase() !== 'password',
+                    shortPassword: value => value.length > 6,
+                  },
+                })}
+                placeholder="******"
               />
               <IoMdKey className="register-form__input-icon" />
             </div>
+
+            {errors.password && errors.password.type === 'badWord' && (
+              <div className="validation">
+                <VscWarning className="validation__icon" />
+                <p className="validation__text">
+                  Your password shouldn't contains word 'password'
+                </p>
+              </div>
+            )}
+            {errors.password && errors.password.type === 'shortPassword' && (
+              <div className="validation">
+                <VscWarning className="validation__icon" />
+                <p className="validation__text">
+                  Your password can't be shorter than 6 symbols
+                </p>
+              </div>
+            )}
           </div>
 
           <button className="register-form__btn" type="submit">
